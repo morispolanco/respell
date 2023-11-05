@@ -2,40 +2,33 @@ import streamlit as st
 import requests
 import json
 
-# Define la URL de la API y la clave de autenticación
-api_url = "https://api.respell.ai/v1/run"
-api_key = "260cee54-6d54-48ba-92e8-bf641b5f4805"
-
-st.title("API Respell.ai Demo")
-
-# Ingresa la pregunta del usuario en español
-user_question = st.text_input("Ingresa tu pregunta en español")
-
-# Agrega un campo para especificar el país en español
-selected_country = st.text_input("Especifica el país en español")
-
-if st.button("Obtener Respuesta"):
-    # Configura los parámetros de la solicitud
+# Define la función para llamar a la API de Respell.ai
+def call_respell_api():
+    api_url = "https://api.respell.ai/v1/run"
     headers = {
-        "authorization": f"Bearer {api_key}",
-        "accept": "application/json",
-        "content-type": "application/json",
+        "Authorization": "Bearer 260cee54-6d54-48ba-92e8-bf641b5f4805",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
     }
-
-    payload = {
+    input_data = {
         "spellId": "RP0oSnJvS2ONDeTPCOBPZ",
-        "spellVersionId": "6m89Lc40p6kW-yS82NK5H",
-        "inputs": {"pregunta": user_question, "pais": selected_country},
+        "spellVersionId": "pzXV2-bDEyJAo52mtgKmS",
+        "inputs": {
+            "pregunta": st.text_input("Pregunta", "Example text"),
+            "pais": st.text_input("Pais", "Example text"),
+            "idioma": st.text_input("Idioma", "Example text"),
+            
+            
+        }
     }
+    
+    response = requests.post(api_url, headers=headers, data=json.dumps(input_data))
+    return response.json()
 
-    # Realiza la solicitud a la API
-    response = requests.post(api_url, headers=headers, json=payload)
+# Crear la aplicación Streamlit
+st.title("Aplicación Respell.ai")
 
-    if response.status_code == 200:
-        # Obtiene la respuesta en formato JSON
-        api_response = response.json()
-        st.subheader("Respuesta JSON:")
-        st.json(api_response)
-
-    else:
-        st.error("Error al obtener datos de la API. Verifica tu configuración y vuelve a intentarlo.")
+# Llamada a la API y mostrar resultados
+if st.button("Ejecutar Respell.ai"):
+    result = call_respell_api()
+    st.json(result)
