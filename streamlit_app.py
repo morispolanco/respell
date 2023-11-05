@@ -7,8 +7,8 @@ api_key = "260cee54-6d54-48ba-92e8-bf641b5f4805"
 
 st.title("API Respell.ai Demo")
 
-# Ingresa la pregunta del usuario
-user_question = st.text_input("Ingresa tu pregunta")
+# Ingresa la pregunta del usuario en español
+user_question = st.text_input("Ingresa tu pregunta en español")
 
 if st.button("Obtener Respuesta"):
     # Configura los parámetros de la solicitud
