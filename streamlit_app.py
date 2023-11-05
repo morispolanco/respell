@@ -21,11 +21,10 @@ if st.button("Enviar solicitud"):
         },
         data=json.dumps({
             "spellId": "RP0oSnJvS2ONDeTPCOBPZ",
-            "spellVersionId": "pzXV2-bDEyJAo52mtgKmS",
             "inputs": {
                 "pregunta": pregunta,
                 "pais": pais,
-                "idioma": idioma
+                "idioma": idioma,
                 
             }
         }),
