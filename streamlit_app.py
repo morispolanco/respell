@@ -3,15 +3,15 @@ import requests
 import json
 
 # Título de la aplicación
-st.title("Preguntas legales")
+st.title("Responder Preguntas con Respell.ai")
 
 # Campos de entrada para el usuario
 pregunta = st.text_input("Pregunta", "Escribe tu pregunta aquí")
 pais = st.text_input("País", "Escribe tu país aquí")
 idioma = st.text_input("Idioma", "Escribe tu idioma aquí")
 
-# Botón para corregir el texto
-if st.button("Corregir Texto"):
+# Botón para obtener la respuesta
+if st.button("Obtener Respuesta"):
     # Realizar la solicitud a la API de Respell.ai
     response = requests.post(
         "https://api.respell.ai/v1/run",
@@ -33,8 +33,8 @@ if st.button("Corregir Texto"):
 
     # Procesar la respuesta de la API
     if response.status_code == 200:
-        corrected_text = response.json().get("outputs", {}).get("pregunta", "Error al corregir el texto")
-        st.write("Texto corregido:", corrected_text)
+        respuesta = response.json().get("outputs", {}).get("respuesta", "No se pudo obtener una respuesta")
+        st.write("Respuesta:", respuesta)
     else:
         st.write("Error al enviar la solicitud a la API")
 
