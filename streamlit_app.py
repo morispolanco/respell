@@ -5,9 +5,6 @@ import json
 # Accede a la clave de la API de Respell.ai desde los secrets
 api_key = st.secrets["respell"]["api_key"]
 
-# Resto del código de la aplicación
-
-
 # Título de la aplicación
 st.title("Preguntas y casos de legislación")
 
@@ -22,7 +19,7 @@ if st.button("Obtener Respuesta"):
     response = requests.post(
         "https://api.respell.ai/v1/run",
         headers={
-            "Authorization": "Bearer api-key",
+            "Authorization": f"Bearer {api_key}",  # Utiliza la variable api_key
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
@@ -43,4 +40,3 @@ if st.button("Obtener Respuesta"):
         st.write("Respuesta:", respuesta)
     else:
         st.write("Error al enviar la solicitud a la API")
-
