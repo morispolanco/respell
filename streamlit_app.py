@@ -3,7 +3,7 @@ import requests
 import json
 
 # Título de la aplicación
-st.title("Responder Preguntas con Respell.ai")
+st.title("Preguntas y casos de legislación")
 
 # Campos de entrada para el usuario
 pregunta = st.text_input("Pregunta", "Escribe tu pregunta aquí")
