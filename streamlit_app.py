@@ -2,6 +2,12 @@ import streamlit as st
 import requests
 import json
 
+# Accede a la clave de la API de Respell.ai desde los secrets
+api_key = st.secrets["respell"]["api_key"]
+
+# Resto del código de la aplicación
+
+
 # Título de la aplicación
 st.title("Preguntas y casos de legislación")
 
@@ -16,7 +22,7 @@ if st.button("Obtener Respuesta"):
     response = requests.post(
         "https://api.respell.ai/v1/run",
         headers={
-            "Authorization": "Bearer 260cee54-6d54-48ba-92e8-bf641b5f4805",
+            "Authorization": "Bearer api-key",
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
