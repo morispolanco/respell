@@ -1,12 +1,11 @@
 import streamlit as st
 import requests
 
-
 # Define la URL de la API y la clave de autenticación
 api_url = "https://api.respell.ai/v1/run"
 api_key = "260cee54-6d54-48ba-92e8-bf641b5f4805"
 
-st.title("Preguntas legales")
+st.title("API Respell.ai Demo")
 
 # Ingresa la pregunta del usuario
 user_question = st.text_input("Ingresa tu pregunta")
@@ -31,20 +30,8 @@ if st.button("Obtener Respuesta"):
     if response.status_code == 200:
         # Obtiene la respuesta en formato JSON
         api_response = response.json()
-
-        if "outputs" in api_response:
-            # Extrae el contenido Markdown de la respuesta JSON
-            markdown_response = api_response["outputs"]
-
-            # Convierte el contenido Markdown en HTML
-            html_response = markdown.markdown(markdown_response)
-
-            st.subheader("Respuesta en Markdown:")
-            # Muestra la respuesta convertida a HTML
-            st.write(html_response, unsafe_allow_html=True)
-
-        else:
-            st.error("La respuesta de la API no contiene contenido Markdown.")
+        st.subheader("Respuesta:")
+        st.write(api_response)
 
     else:
         st.error("Error al obtener datos de la API. Verifica tu configuración y vuelve a intentarlo.")
