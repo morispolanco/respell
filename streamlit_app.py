@@ -24,8 +24,9 @@ if st.button("Enviar solicitud"):
             "spellVersionId": "pzXV2-bDEyJAo52mtgKmS",
             "inputs": {
                 "pregunta": pregunta,
+                "pais": pais,
                 "idioma": idioma,
-                "pais": pais
+                
             }
         }),
     )
