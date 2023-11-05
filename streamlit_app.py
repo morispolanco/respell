@@ -25,7 +25,7 @@ if st.button("Enviar solicitud"):
             "inputs": {
                 "pregunta": pregunta,
                 "pais": pais,
-                "idioma": idioma,
+                "idioma": idioma
                 
             }
         }),
