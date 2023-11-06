@@ -33,7 +33,6 @@ if st.button("Obtener Respuesta"):
             },
             data=json.dumps({
                 "spellId": "RP0oSnJvS2ONDeTPCOBPZ",
-                "spellVersionId": "KH3B4rp65SsyLsKR-tFrW",
                 "inputs": {
                     "pregunta": pregunta,
                     "idioma": idioma,
