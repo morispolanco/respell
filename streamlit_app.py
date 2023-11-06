@@ -30,7 +30,7 @@ if st.button("Obtener Respuesta"):
         },
         data=json.dumps({
             "spellId": "RP0oSnJvS2ONDeTPCOBPZ",
-            "spellVersionId": "pzXV2-bDEyJAo52mtgKmS",
+            "spellVersionId": "KH3B4rp65SsyLsKR-tFrW",
             "inputs": {
                 "pregunta": pregunta,
                 "idioma": idioma,
@@ -39,6 +39,8 @@ if st.button("Obtener Respuesta"):
         })
     )
 
+
+    
     # Procesar la respuesta de la API
     if response.status_code == 200:
         respuesta = response.json().get("outputs", {}).get("respuesta", "No se pudo obtener una respuesta")
