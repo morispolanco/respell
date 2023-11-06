@@ -20,30 +20,31 @@ idioma = st.text_input("Idioma", "Escribe tu idioma aquí")
 
 # Botón para obtener la respuesta
 if st.button("Obtener Respuesta"):
-    # Realizar la solicitud a la API de Respell.ai
-    response = requests.post(
-        "https://api.respell.ai/v1/run",
-        headers={
-            "Authorization": f"Bearer {api_key}",  # Utiliza la variable api_key
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        data=json.dumps({
-            "spellId": "RP0oSnJvS2ONDeTPCOBPZ",
-            "spellVersionId": "KH3B4rp65SsyLsKR-tFrW",
-            "inputs": {
-                "pregunta": pregunta,
-                "idioma": idioma,
-                "pais": pais
-            }
-        })
-    )
-
-
-    
-    # Procesar la respuesta de la API
-    if response.status_code == 200:
-        respuesta = response.json().get("outputs", {}).get("respuesta", "No se pudo obtener una respuesta")
-        st.write("Respuesta:", respuesta)
+    if not pregunta or not pais or not idioma:
+        st.warning("Por favor, complete todos los campos de entrada.")
     else:
-        st.write("Error al enviar la solicitud a la API")
+        # Realizar la solicitud a la API de Respell.ai
+        response = requests.post(
+            "https://api.respell.ai/v1/run",
+            headers={
+                "Authorization": f"Bearer {api_key}",  # Utiliza la variable api_key
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            data=json.dumps({
+                "spellId": "RP0oSnJvS2ONDeTPCOBPZ",
+                "spellVersionId": "KH3B4rp65SsyLsKR-tFrW",
+                "inputs": {
+                    "pregunta": pregunta,
+                    "idioma": idioma,
+                    "pais": pais
+                }
+            })
+        )
+        
+        # Procesar la respuesta de la API
+        if response.status_code == 200:
+            respuesta = response.json().get("outputs", {}).get("respuesta", "No se pudo obtener una respuesta")
+            st.write("Respuesta:", respuesta)
+        else:
+            st.error("Error al enviar la solicitud a la API")
