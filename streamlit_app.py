@@ -11,7 +11,7 @@ st.markdown("Plantee una pregunta o un caso sobre las leyes de cualquier país."
 st.text("Por Moris Polanco")
 
 # Campos de entrada para el usuario
-pregunta = st.text_input("Pregunta o caso", "Escribe tu pregunta o plantea tu caso aquí")
+pregunta = st.text_area("Pregunta o caso", "Escribe tu pregunta o plantea tu caso aquí")
 pais = st.text_input("País", "Escribe tu país aquí")
 idioma = st.text_input("Idioma", "Escribe tu idioma aquí")
 
