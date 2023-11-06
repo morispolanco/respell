@@ -7,6 +7,7 @@ api_key = st.secrets["respell"]["api_key"]
 
 # Título de la aplicación
 st.title("Preguntas y casos de legislación")
+st.subtitle("Plantee una pregunta o un caso sobre las leyes de cualquier país")
 
 # Campos de entrada para el usuario
 pregunta = st.text_input("Pregunta", "Escribe tu pregunta aquí")
