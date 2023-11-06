@@ -2,6 +2,9 @@ import streamlit as st
 import requests
 import json
 
+# Configura el título de la página en el navegador
+st.set_page_config(page_title="Leybot", page_icon="📚")
+
 # Accede a la clave de la API de Respell.ai desde los secrets
 api_key = st.secrets["respell"]["api_key"]
 
