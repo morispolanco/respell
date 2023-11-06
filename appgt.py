@@ -6,7 +6,7 @@ import json
 st.set_page_config(page_title="LeybotGt", page_icon="📚")
 
 # Título de la aplicación
-st.title("LeybotGt - Respuestas de Legislación Guatemalteca")
+st.title("LeybotGt")
 st.markdown("Esta aplicación responde preguntas relacionadas con la legislación de Guatemala.")
 st.text("Por Moris Polanco")
 
