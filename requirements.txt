@@ -1,3 +1,2 @@
 streamlit
-sounddevice
-portaudio19-dev
+
