@@ -28,7 +28,7 @@ if st.button("Obtener Respuesta"):
             },
             data=json.dumps({
                 "spellId": "k0GhQkJOn7IKEY-BdghY6",
-                "spellVersionId": "4_nhg1PEL1GaU1IUsVWAT",
+                
                 "inputs": {
                     "pregunta": pregunta
                 }
