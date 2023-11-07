@@ -11,7 +11,7 @@ st.markdown("Esta aplicación responde preguntas relacionadas con la legislació
 st.text("Por Moris Polanco")
 
 # Campo de entrada para la pregunta o caso
-pregunta = st.text_area("Pregunta o caso", "Escribe tu pregunta o plantea tu caso aquí")
+pregunta = st.text_area("Pregunta o caso")
 
 # Botón para obtener la respuesta
 if st.button("Obtener Respuesta"):
