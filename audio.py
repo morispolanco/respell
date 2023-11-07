@@ -1,5 +1,6 @@
 import streamlit as st
-import sounddevice as sd
+import requests
+import json
 
 # Configura el título de la página en el navegador
 st.set_page_config(page_title="LeybotGt", page_icon="📚")
@@ -9,28 +10,15 @@ st.title("LeybotGt")
 st.markdown("Esta aplicación responde preguntas relacionadas con la legislación de Guatemala.")
 st.text("Por Moris Polanco")
 
+# Campo de entrada para el nombre del usuario
+nombre_usuario = st.text_input("Nombre")
+
+# Bienvenida al usuario
+if nombre_usuario:
+    st.write("Hola, " + nombre_usuario + "!")
+
 # Campo de entrada para la pregunta o caso
 pregunta = st.text_area("Pregunta o caso")
-
-# Botón para obtener la respuesta
-if st.button("Obtener Respuesta"):
-    # Resto de tu código para obtener la respuesta de la API con la pregunta
-
-# Botón para capturar audio en vivo
-    if st.button("Capturar Audio en Vivo"):
-        st.warning("Habilitando captura de audio en vivo... Presiona el botón de detener cuando hayas terminado.")
-        
-        audio_stream = st.empty()
-        
-        # Configura la captura de audio en vivo
-        sample_rate = 44100
-        duration = 10  # Duración en segundos
-        audio_data = sd.rec(int(sample_rate * duration), samplerate=sample_rate, channels=1, dtype='int16')
-        sd.wait()  # Espera a que termine la captura
-    
-    # Puedes procesar audio_data como desees (por ejemplo, enviarlo a una API para análisis)
-
-# Resto de tu código
 
 # Botón para obtener la respuesta
 if st.button("Obtener Respuesta"):
@@ -47,6 +35,7 @@ if st.button("Obtener Respuesta"):
             },
             data=json.dumps({
                 "spellId": "k0GhQkJOn7IKEY-BdghY6",
+                
                 "inputs": {
                     "pregunta": pregunta
                 }
@@ -60,31 +49,6 @@ if st.button("Obtener Respuesta"):
         else:
             st.error("Error al enviar la solicitud a la API")
 
-# Botón para procesar audio en vivo
-if st.button("Audio en Vivo"):
-    st.warning("Habilitando audio en vivo... Presiona el botón de detener cuando hayas terminado.")
-    
-    audio_stream = st.empty()
-    p = pyaudio.PyAudio()
-    
-    # Configura los parámetros de audio, como la tasa de muestreo y la duración
-    sample_rate = 44100
-    duration = 10  # Duración en segundos
-    
-    stream = p.open(format=pyaudio.paInt16, channels=1, rate=sample_rate, input=True, frames_per_buffer=1024)
-    
-    audio_data = []
-
-    while True:
-        try:
-            audio_chunk = np.frombuffer(stream.read(1024), dtype=np.int16)
-            audio_data.append(audio_chunk)
-            audio_stream.audio(audio_chunk)
-        except KeyboardInterrupt:
-            break
-
-    stream.stop_stream()
-    stream.close()
-    p.terminate()
-
-    # Procesar audio_data como desees (por ejemplo, enviarlo a una API para análisis)
+# Mensaje de despedida
+if nombre_usuario:
+    st.write("¡Hasta pronto, " + nombre_usuario + "!")
