@@ -1,54 +1,39 @@
-import streamlit as st
 import requests
 import json
+import streamlit as st
 
-# Configura el título de la página en el navegador
-st.set_page_config(page_title="LeybotGt", page_icon="📚")
+# Configurar la clave de API de Respell.ai
+api_key = st.text_input("Respell.ai API Key", type="password")
 
-# Título de la aplicación
-st.title("LeybotGt")
-st.markdown("Esta aplicación responde preguntas relacionadas con la legislación de Guatemala.")
-st.text("Por Moris Polanco")
+st.title("📝 Respuesta de Respell.ai")
 
-# Campo de entrada para el nombre del usuario
-nombre_usuario = st.text_input("Nombre")
+# Obtener entrada del usuario
+pregunta = st.text_input("Pregunta")
+idioma = st.text_input("Idioma")
+pais = st.text_input("País")
 
-# Bienvenida al usuario
-if nombre_usuario:
-    st.write("Hola, " + nombre_usuario + "!")
+# Realizar la solicitud a la API de Respell.ai
+if api_key:
+    response = requests.post(
+        "https://api.respell.ai/v1/run",
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        data=json.dumps({
+            "spellId": "RP0oSnJvS2ONDeTPCOBPZ",
+            "inputs": {
+                "pregunta": pregunta,
+                "idioma": idioma,
+                "pais": pais
+            }
+        })
+    )
 
-# Campo de entrada para la pregunta o caso
-pregunta = st.text_area("Pregunta o caso")
-
-# Botón para obtener la respuesta
-if st.button("Obtener Respuesta"):
-    if not pregunta:
-        st.warning("Por favor, escriba una pregunta o caso.")
+    # Procesar la respuesta de la API
+    if response.status_code == 200:
+        respuesta = response.json().get("outputs", {}).get("respuesta", "No se pudo obtener una respuesta")
+        st.write("Respuesta:", respuesta)
     else:
-        # Realizar la solicitud a la API de Respell.ai
-        response = requests.post(
-            "https://api.respell.ai/v1/run",
-            headers={
-                "Authorization": "Bearer 260cee54-6d54-48ba-92e8-bf641b5f4805",
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            data=json.dumps({
-                "spellId": "k0GhQkJOn7IKEY-BdghY6",
-                
-                "inputs": {
-                    "pregunta": pregunta
-                }
-            })
-        )
-        
-        # Procesar la respuesta de la API
-        if response.status_code == 200:
-            respuesta = response.json().get("outputs", {}).get("respuesta", "No se pudo obtener una respuesta")
-            st.write("Respuesta:", respuesta)
-        else:
-            st.error("Error al enviar la solicitud a la API")
-
-# Mensaje de despedida
-if nombre_usuario:
-    st.write("¡Hasta pronto, " + nombre_usuario + "!")
+        st.error("Error al enviar la solicitud a la API")
