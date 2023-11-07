@@ -1,4 +1,2 @@
 streamlit
-soundfile
-pyaudio
-numpy
+sounddevice
