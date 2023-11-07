@@ -17,16 +17,16 @@ if st.button("Obtener Respuesta"):
     # Resto de tu código para obtener la respuesta de la API con la pregunta
 
 # Botón para capturar audio en vivo
-if st.button("Capturar Audio en Vivo"):
-    st.warning("Habilitando captura de audio en vivo... Presiona el botón de detener cuando hayas terminado.")
-    
-    audio_stream = st.empty()
-    
-    # Configura la captura de audio en vivo
-    sample_rate = 44100
-    duration = 10  # Duración en segundos
-    audio_data = sd.rec(int(sample_rate * duration), samplerate=sample_rate, channels=1, dtype='int16')
-    sd.wait()  # Espera a que termine la captura
+    if st.button("Capturar Audio en Vivo"):
+        st.warning("Habilitando captura de audio en vivo... Presiona el botón de detener cuando hayas terminado.")
+        
+        audio_stream = st.empty()
+        
+        # Configura la captura de audio en vivo
+        sample_rate = 44100
+        duration = 10  # Duración en segundos
+        audio_data = sd.rec(int(sample_rate * duration), samplerate=sample_rate, channels=1, dtype='int16')
+        sd.wait()  # Espera a que termine la captura
     
     # Puedes procesar audio_data como desees (por ejemplo, enviarlo a una API para análisis)
 
