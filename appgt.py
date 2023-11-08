@@ -13,22 +13,26 @@ st.text("Por Moris Polanco")
 # Campo de entrada para la pregunta o caso
 pregunta = st.text_area("Pregunta o caso")
 
+# Clave de API de Respell
+clave_api = st.text_input("Clave de API de Respell")
+
 # Botón para obtener la respuesta
 if st.button("Obtener Respuesta"):
     if not pregunta:
         st.warning("Por favor, escriba una pregunta o caso.")
+    elif not clave_api:
+        st.warning("Por favor, ingrese una clave de API de Respell.")
     else:
         # Realizar la solicitud a la API de Respell.ai
         response = requests.post(
             "https://api.respell.ai/v1/run",
             headers={
-                "Authorization": "Bearer 260cee54-6d54-48ba-92e8-bf641b5f4805",
+                "Authorization": f"Bearer {clave_api}",
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
             data=json.dumps({
                 "spellId": "k0GhQkJOn7IKEY-BdghY6",
-                
                 "inputs": {
                     "pregunta": pregunta
                 }
