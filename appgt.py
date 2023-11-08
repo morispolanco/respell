@@ -10,11 +10,13 @@ st.title("LeybotGt")
 st.markdown("Esta aplicación responde preguntas relacionadas con la legislación de Guatemala.")
 st.text("Por Moris Polanco")
 
+# Clave de API de Respell
+clave_api = st.text_input("Clave de API de Respell")
+
 # Campo de entrada para la pregunta o caso
 pregunta = st.text_area("Pregunta o caso")
 
-# Clave de API de Respell
-clave_api = st.text_input("Clave de API de Respell")
+
 
 # Botón para obtener la respuesta
 if st.button("Obtener Respuesta"):
