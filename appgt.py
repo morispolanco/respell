@@ -11,7 +11,7 @@ st.markdown("Esta aplicación responde preguntas relacionadas con la legislació
 st.text("Por Moris Polanco")
 
 # Clave de API de Respell
-clave_api = st.text_input("Clave de API de Respell")
+clave_api = st.text_input("Clave de API de Respell", type="password")
 
 # Campo de entrada para la pregunta o caso
 pregunta = st.text_area("Pregunta o caso")
