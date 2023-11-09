@@ -10,17 +10,14 @@ st.title("LeybotGt")
 st.markdown("Esta aplicación responde preguntas relacionadas con la legislación de Guatemala.")
 st.text("Por Moris Polanco")
 
-
 # Campo de entrada para la pregunta o caso
 pregunta = st.text_area("Pregunta o caso")
-
-
 
 # Botón para obtener la respuesta
 if st.button("Obtener Respuesta"):
     if not pregunta:
         st.warning("Por favor, escriba una pregunta o caso.")
-   
+    else:
         # Realizar la solicitud a la API de Respell.ai
         response = requests.post(
             "https://api.respell.ai/v1/run",
