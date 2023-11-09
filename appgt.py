@@ -10,8 +10,6 @@ st.title("LeybotGt")
 st.markdown("Esta aplicación responde preguntas relacionadas con la legislación de Guatemala.")
 st.text("Por Moris Polanco")
 
-# Clave de API de Respell
-clave_api = st.text_input("Clave de API de Respell", type="password")
 
 # Campo de entrada para la pregunta o caso
 pregunta = st.text_area("Pregunta o caso")
@@ -29,7 +27,7 @@ if st.button("Obtener Respuesta"):
         response = requests.post(
             "https://api.respell.ai/v1/run",
             headers={
-                "Authorization": f"Bearer {clave_api}",
+                "Authorization": "Bearer 260cee54-6d54-48ba-92e8-bf641b5f4805",
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
