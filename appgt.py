@@ -3,11 +3,11 @@ import requests
 import json
 
 # Configura el título de la página en el navegador
-st.set_page_config(page_title="LeybotGt", page_icon="📚")
+st.set_page_config(page_title="Buscador", page_icon="📚")
 
 # Título de la aplicación
-st.title("LeybotGt")
-st.markdown("Esta aplicación responde preguntas sobre la legislación de Guatemala.")
+st.title("Buscador")
+st.markdown("Esta aplicación responde preguntas sobre la legislación de Guatemala, buscando en la Web.")
 st.text("Por Moris Polanco")
 
 # Campo de entrada para la pregunta o caso
